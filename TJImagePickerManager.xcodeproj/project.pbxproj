@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		266F329C423CA626A6313FDF /* Pods_TJImagePickerManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C76A455A0AD04C0640F1A6C /* Pods_TJImagePickerManager.framework */; };
+		A84A76271E600733000F1901 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76261E600733000F1901 /* main.m */; };
+		A84A762A1E600733000F1901 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76291E600733000F1901 /* AppDelegate.m */; };
+		A84A762D1E600733000F1901 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A762C1E600733000F1901 /* ViewController.m */; };
+		A84A76301E600733000F1901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A84A762E1E600733000F1901 /* Main.storyboard */; };
+		A84A76321E600733000F1901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A84A76311E600733000F1901 /* Assets.xcassets */; };
+		A84A76351E600733000F1901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A84A76331E600733000F1901 /* LaunchScreen.storyboard */; };
+		A84A763E1E6014D4000F1901 /* TJActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A763D1E6014D4000F1901 /* TJActionSheet.m */; };
+		A84A76451E601946000F1901 /* TJImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76401E601946000F1901 /* TJImagePickerManager.m */; };
+		A84A76461E601946000F1901 /* TJMediaLibraryView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76421E601946000F1901 /* TJMediaLibraryView.m */; };
+		A84A76471E601946000F1901 /* TJPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76441E601946000F1901 /* TJPickerViewModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		317ED9D23491CBB0CB8507E7 /* Pods-TJImagePickerManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJImagePickerManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJImagePickerManager/Pods-TJImagePickerManager.debug.xcconfig"; sourceTree = "<group>"; };
+		5C76A455A0AD04C0640F1A6C /* Pods_TJImagePickerManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJImagePickerManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A84A76221E600733000F1901 /* TJImagePickerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJImagePickerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A84A76261E600733000F1901 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A84A76281E600733000F1901 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A84A76291E600733000F1901 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A84A762B1E600733000F1901 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A84A762C1E600733000F1901 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A84A762F1E600733000F1901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A84A76311E600733000F1901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A84A76341E600733000F1901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A84A76361E600733000F1901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A84A763C1E6014D4000F1901 /* TJActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJActionSheet.h; sourceTree = "<group>"; };
+		A84A763D1E6014D4000F1901 /* TJActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJActionSheet.m; sourceTree = "<group>"; };
+		A84A763F1E601946000F1901 /* TJImagePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJImagePickerManager.h; sourceTree = "<group>"; };
+		A84A76401E601946000F1901 /* TJImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJImagePickerManager.m; sourceTree = "<group>"; };
+		A84A76411E601946000F1901 /* TJMediaLibraryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMediaLibraryView.h; sourceTree = "<group>"; };
+		A84A76421E601946000F1901 /* TJMediaLibraryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMediaLibraryView.m; sourceTree = "<group>"; };
+		A84A76431E601946000F1901 /* TJPickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJPickerViewModel.h; sourceTree = "<group>"; };
+		A84A76441E601946000F1901 /* TJPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPickerViewModel.m; sourceTree = "<group>"; };
+		AC2153E8828DD39D5374EBC6 /* Pods-TJImagePickerManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJImagePickerManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJImagePickerManager/Pods-TJImagePickerManager.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A84A761F1E600733000F1901 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				266F329C423CA626A6313FDF /* Pods_TJImagePickerManager.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63AF52D80AE47224465A6055 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				317ED9D23491CBB0CB8507E7 /* Pods-TJImagePickerManager.debug.xcconfig */,
+				AC2153E8828DD39D5374EBC6 /* Pods-TJImagePickerManager.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A84A76191E600733000F1901 = {
+			isa = PBXGroup;
+			children = (
+				A84A76241E600733000F1901 /* TJImagePickerManager */,
+				A84A76231E600733000F1901 /* Products */,
+				63AF52D80AE47224465A6055 /* Pods */,
+				D67FAE8A5D994D300E001FB1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A84A76231E600733000F1901 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A84A76221E600733000F1901 /* TJImagePickerManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A84A76241E600733000F1901 /* TJImagePickerManager */ = {
+			isa = PBXGroup;
+			children = (
+				A84A76481E60194D000F1901 /* TJImagePickerManager */,
+				A84A76281E600733000F1901 /* AppDelegate.h */,
+				A84A76291E600733000F1901 /* AppDelegate.m */,
+				A84A763C1E6014D4000F1901 /* TJActionSheet.h */,
+				A84A763D1E6014D4000F1901 /* TJActionSheet.m */,
+				A84A762B1E600733000F1901 /* ViewController.h */,
+				A84A762C1E600733000F1901 /* ViewController.m */,
+				A84A762E1E600733000F1901 /* Main.storyboard */,
+				A84A76311E600733000F1901 /* Assets.xcassets */,
+				A84A76331E600733000F1901 /* LaunchScreen.storyboard */,
+				A84A76361E600733000F1901 /* Info.plist */,
+				A84A76251E600733000F1901 /* Supporting Files */,
+			);
+			path = TJImagePickerManager;
+			sourceTree = "<group>";
+		};
+		A84A76251E600733000F1901 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A84A76261E600733000F1901 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A84A76481E60194D000F1901 /* TJImagePickerManager */ = {
+			isa = PBXGroup;
+			children = (
+				A84A763F1E601946000F1901 /* TJImagePickerManager.h */,
+				A84A76401E601946000F1901 /* TJImagePickerManager.m */,
+				A84A76411E601946000F1901 /* TJMediaLibraryView.h */,
+				A84A76421E601946000F1901 /* TJMediaLibraryView.m */,
+				A84A76431E601946000F1901 /* TJPickerViewModel.h */,
+				A84A76441E601946000F1901 /* TJPickerViewModel.m */,
+			);
+			name = TJImagePickerManager;
+			sourceTree = "<group>";
+		};
+		D67FAE8A5D994D300E001FB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C76A455A0AD04C0640F1A6C /* Pods_TJImagePickerManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A84A76211E600733000F1901 /* TJImagePickerManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A84A76391E600733000F1901 /* Build configuration list for PBXNativeTarget "TJImagePickerManager" */;
+			buildPhases = (
+				FE38DA5601CF86A2997B7B3B /* [CP] Check Pods Manifest.lock */,
+				A84A761E1E600733000F1901 /* Sources */,
+				A84A761F1E600733000F1901 /* Frameworks */,
+				A84A76201E600733000F1901 /* Resources */,
+				3221A7C9371E1E341387C283 /* [CP] Embed Pods Frameworks */,
+				7B3B85A468CA804726CE8004 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TJImagePickerManager;
+			productName = TJImagePickerManager;
+			productReference = A84A76221E600733000F1901 /* TJImagePickerManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A84A761A1E600733000F1901 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = tao;
+				TargetAttributes = {
+					A84A76211E600733000F1901 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = DQK8L5T84R;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A84A761D1E600733000F1901 /* Build configuration list for PBXProject "TJImagePickerManager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A84A76191E600733000F1901;
+			productRefGroup = A84A76231E600733000F1901 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A84A76211E600733000F1901 /* TJImagePickerManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A84A76201E600733000F1901 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A84A76351E600733000F1901 /* LaunchScreen.storyboard in Resources */,
+				A84A76321E600733000F1901 /* Assets.xcassets in Resources */,
+				A84A76301E600733000F1901 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3221A7C9371E1E341387C283 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TJImagePickerManager/Pods-TJImagePickerManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B3B85A468CA804726CE8004 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TJImagePickerManager/Pods-TJImagePickerManager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE38DA5601CF86A2997B7B3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A84A761E1E600733000F1901 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A84A762D1E600733000F1901 /* ViewController.m in Sources */,
+				A84A76461E601946000F1901 /* TJMediaLibraryView.m in Sources */,
+				A84A76471E601946000F1901 /* TJPickerViewModel.m in Sources */,
+				A84A762A1E600733000F1901 /* AppDelegate.m in Sources */,
+				A84A76451E601946000F1901 /* TJImagePickerManager.m in Sources */,
+				A84A76271E600733000F1901 /* main.m in Sources */,
+				A84A763E1E6014D4000F1901 /* TJActionSheet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A84A762E1E600733000F1901 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A84A762F1E600733000F1901 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A84A76331E600733000F1901 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A84A76341E600733000F1901 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A84A76371E600733000F1901 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A84A76381E600733000F1901 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A84A763A1E600733000F1901 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 317ED9D23491CBB0CB8507E7 /* Pods-TJImagePickerManager.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DQK8L5T84R;
+				INFOPLIST_FILE = TJImagePickerManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tjzl.TJImagePickerManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A84A763B1E600733000F1901 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC2153E8828DD39D5374EBC6 /* Pods-TJImagePickerManager.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DQK8L5T84R;
+				INFOPLIST_FILE = TJImagePickerManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tjzl.TJImagePickerManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A84A761D1E600733000F1901 /* Build configuration list for PBXProject "TJImagePickerManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A84A76371E600733000F1901 /* Debug */,
+				A84A76381E600733000F1901 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A84A76391E600733000F1901 /* Build configuration list for PBXNativeTarget "TJImagePickerManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A84A763A1E600733000F1901 /* Debug */,
+				A84A763B1E600733000F1901 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A84A761A1E600733000F1901 /* Project object */;
+}
