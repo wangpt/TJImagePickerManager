@@ -10,7 +10,9 @@
 #import "TJActionSheet.h"
 #import "TJImagePickerManager.h"
 #import <MediaPlayer/MPMoviePlayerViewController.h>
-@interface ViewController ()
+#import "VoiceRecView.h"
+@interface ViewController ()<VoiceDelegate>
+@property (nonatomic,strong)VoiceRecView * recView;
 
 @end
 
@@ -43,14 +45,26 @@
 }
 - (IBAction)reportAudio:(id)sender {
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"录音"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-        [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
+//        [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
         
+        self.recView= [[VoiceRecView alloc]initWithVoiceRecView];
+        _recView.delegate=self;
+        [self.view addSubview:_recView];
+        self.recView.frame =CGRectMake((self.view.frame.size.width-self.recView.frame.size.width)/2, self.recView.frame.origin.y, self.recView.frame.size.width, self.recView.frame.size.height);
+
     }];
     
     [sheet show];
     
 }
-
+-(void)voiceFinishedWith:(NSString *)voiceurl{
+    [self.recView removeFromSuperview];
+    self.recView.delegate=nil;
+//    TJImageEntity *entity =[[TJImageEntity alloc]init];
+//    entity.assetPath = voiceurl;
+//    entity.assetType = VOICETYPE;
+//    [self addMediaBtnWithEntity:entity];
+}
 - (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets{
     NSLog(@"%@",assets);
 

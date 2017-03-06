@@ -23,7 +23,14 @@
 @end
 @implementation TJMediaLibraryView
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-
+//- (id)initWithFrame:(CGRect)frame {
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        // Initialization code
+//        [self setup];
+//    }
+//    return self;
+//}
 #pragma mark -
 -(void)rangeMediaLittleBtn{
     int i =0;
