@@ -25,16 +25,25 @@
                                 <rect key="frame" x="139" y="100" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="上传图片"/>
+                                <connections>
+                                    <action selector="reportPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HIe-ye-jJo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-of-2Ny">
                                 <rect key="frame" x="139" y="200" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="上传视频"/>
+                                <connections>
+                                    <action selector="reportVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XtY-Xz-zl3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-UY-C4U">
                                 <rect key="frame" x="139" y="300" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="上传音频"/>
+                                <connections>
+                                    <action selector="reportAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MM7-9G-h5d"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

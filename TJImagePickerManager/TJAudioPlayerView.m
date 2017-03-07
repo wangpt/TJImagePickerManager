@@ -8,8 +8,16 @@
 
 #import "TJAudioPlayerView.h"
 #define BLACK_HEIGHT 230
+#define BLACK_WIDTH 210
+
+@interface TJAudioPlayerView ()
+
+@property (retain, nonatomic) UIButton * recordButton;
+@property (retain, nonatomic) UIButton * finishButton;
+@property (retain, nonatomic) UIButton * playButton;
 
 
+@end
 @implementation TJAudioPlayerView
 #pragma mark - viewframe
 + (void)setX:(CGFloat)x view:(UIView *)view
@@ -58,8 +66,57 @@
 {
     return view.frame.size.height;
 }
-
+- (CGFloat)width{
+    return self.frame.size.width;
+}
 #pragma mark - init
+
+- (UIButton *)recordButton{
+    if (!_recordButton) {
+        _recordButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _recordButton.frame = CGRectMake(0, 0, 85, 44);
+        _recordButton.center = CGPointMake(BLACK_WIDTH/2, BLACK_HEIGHT-50);
+        [_recordButton setTitle:@"长按录音" forState:UIControlStateNormal];
+        UILongPressGestureRecognizer *longPrees = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(recordBtnLongPressed:)];
+        longPrees.delegate = self;
+        [_recordButton addGestureRecognizer:longPrees];
+    }
+    return _recordButton;
+}
+- (UIButton *)playButton{
+    if (!_playButton) {
+        _playButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _playButton.frame = CGRectMake(20, 0, 40, 44);
+        _playButton.center = CGPointMake(_playButton.center.x,BLACK_HEIGHT-44);
+        [_playButton setTitle:@"播放" forState:UIControlStateNormal];
+        [_playButton addTarget:self action:@selector(playPause) forControlEvents:UIControlEventTouchUpInside];
+//        _playButton.hidden = YES;
+        
+    }
+    return _playButton;
+    
+}
+- (UIButton *)finishButton{
+    if (!_finishButton) {
+        _finishButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _finishButton.frame = CGRectMake(BLACK_WIDTH-40-20, 0, 40, 44);
+        _finishButton.center = CGPointMake(_finishButton.center.x,BLACK_HEIGHT-44);
+        [_finishButton setTitle:@"完成" forState:UIControlStateNormal];
+
+//        _finishButton.hidden = YES;
+
+    }
+    return _finishButton;
+}
+
+- (TJVoiceRecordManager *)voiceRecord{
+    if (!_voiceRecord) {
+        _voiceRecord = [[TJVoiceRecordManager alloc]init];
+        
+    }
+    return _voiceRecord;
+}
+
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -70,67 +127,71 @@
     return self;
 }
 
+
 - (void)setup{
     //背景色
-    UIView *blackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, BLACK_HEIGHT, BLACK_HEIGHT)];
+    UIView *blackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, BLACK_WIDTH, BLACK_HEIGHT)];
     blackView.layer.cornerRadius=10;
     [self addSubview:blackView];
+    blackView.alpha = 0.8;
     blackView.center = self.center;
     blackView.backgroundColor =[UIColor blackColor];
     [blackView addSubview:self.recordButton];
-    
+    [blackView addSubview:self.playButton];
+    [blackView addSubview:self.finishButton];
+
 }
-- (UIButton *)recordButton{
-    if (!_recordButton) {
-        _recordButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        UILongPressGestureRecognizer *longPrees = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(recordBtnLongPressed:)];
-        longPrees.delegate = self;
-        [_recordButton addGestureRecognizer:longPrees];
-    }
-    return _recordButton;
-}
+
 
 #pragma mark - 长按录音
 - (void)recordBtnLongPressed:(UILongPressGestureRecognizer*) longPressedRecognizer{
     //长按开始
     if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
-       // [self startRec];
-        
+
+        [self.voiceRecord startRecordingWithStartRecorderCompletion:^{
+
+            
+        }];
         
     }//长按结束
     else if(longPressedRecognizer.state == UIGestureRecognizerStateEnded || longPressedRecognizer.state == UIGestureRecognizerStateCancelled){
-        /*
-        
-        self.recBtn.hidden=YES;
-        self.finishBtn.hidden=NO;
-        self.playBtn.hidden=NO;
-        if (recorder) {
-            [recorder stop];
-            recorder = nil;
-        }
-        
-        self.recBtn.hidden=YES;
-        self.finishBtn.hidden=NO;
-        self.playBtn.hidden=NO;
-        if (recorder) {
-            [recorder stop];
-            recorder = nil;
-        }
-        
-        NSError *playerError;
-        
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordedFile error:&playerError];
-        
-        if (player == nil)
-        {
-            NSLog(@"ERror creating player: %@", [playerError description]);
-        }
-        player.delegate = self;
-        */
-        
-        
+        typeof(self) __weak weakSelf = self;
+        [self.voiceRecord stopRecordingWithStopRecorderCompletion:^{
+            typeof(weakSelf) __strong strongSelf = weakSelf;
+            strongSelf.recordButton.hidden = YES;
+            strongSelf.finishButton.hidden = NO;
+
+        }];
     }
 }
+#pragma mark - 播放录音
+
+- (void)playPause{
+//    if([player isPlaying])
+//    {
+//        [player pause];
+//        [self.playBtn setTitle:@"播放" forState:UIControlStateNormal];
+//    }
+//    //If the track is not player, play the track and change the play button to "Pause"
+//    else
+//    {
+//        [player play];
+//        [self.playBtn setTitle:@"暂停" forState:UIControlStateNormal];
+//    }
+   
+    TJAudioPlayerManager *audioPlayer= [TJAudioPlayerManager shareInstance];
+    if ([audioPlayer.player isPlaying]) {
+        [[TJAudioPlayerManager shareInstance]managerAudioWithFileName:self.voiceRecord.recordPath toPlay:NO];
+
+    }else{
+        [[TJAudioPlayerManager shareInstance]managerAudioWithFileName:self.voiceRecord.recordPath toPlay:YES];
+
+    }
+    
+
+}
+#pragma mark - 完成录音
+
 
 
 

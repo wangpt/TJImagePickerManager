@@ -7,7 +7,9 @@
 //
 
 #import "TJAudioPlayerManager.h"
+@interface TJAudioPlayerManager()
 
+@end
 @implementation TJAudioPlayerManager
 #pragma mark - Life Cycle
 

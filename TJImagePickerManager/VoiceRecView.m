@@ -54,12 +54,9 @@
     else if(longPressedRecognizer.state == UIGestureRecognizerStateEnded || longPressedRecognizer.state == UIGestureRecognizerStateCancelled){
         
  
-        self.recBtn.hidden=YES;
-        self.finishBtn.hidden=NO;
         self.playBtn.hidden=NO;
         self.recBtn.hidden=YES;
         self.finishBtn.hidden=NO;
-        self.playBtn.hidden=NO;
         if (recorder) {
             [recorder stop];
             recorder = nil;
@@ -87,7 +84,7 @@
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-    recorderPath = [recorderPath stringByAppendingFormat:@"%@-MySound.m4a", [dateFormatter stringFromDate:now]];
+    recorderPath = [recorderPath stringByAppendingFormat:@"%@-MySound.aac", [dateFormatter stringFromDate:now]];
     return recorderPath;
 }
 

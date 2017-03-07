@@ -68,34 +68,28 @@
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-    recorderPath = [recorderPath stringByAppendingFormat:@"%@-MySound.m4a", [dateFormatter stringFromDate:now]];
+    recorderPath = [recorderPath stringByAppendingFormat:@"%@-MySound.aac", [dateFormatter stringFromDate:now]];
     return recorderPath;
 }
 
 
-- (void)prepareRecordWithCompletion:(TJPrepareRecorderCompletion)completion {
-    [self prepareRecordingWithPath:[self getRecorderPath] prepareRecorderCompletion:completion];
-}
 
+#pragma mark - 开始录音
 
-- (void)prepareRecordingWithPath:(NSString *)path prepareRecorderCompletion:(TJPrepareRecorderCompletion)prepareRecorderCompletion{
+- (void)startRecordingWithStartRecorderCompletion:(TJStartRecorderCompletion)startRecorderCompletion{
     typeof(self) __weak weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         _isPause = NO;
-        
         NSError *error = nil;
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&error];
         if(error) {
             return;
         }
-        
-        error = nil;
         [audioSession setActive:YES error:&error];
         if(error) {
             return;
         }
-        
         NSMutableDictionary * recordSetting = [NSMutableDictionary dictionary];
         [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
         [recordSetting setValue:[NSNumber numberWithFloat:16000.0] forKey:AVSampleRateKey];
@@ -103,7 +97,7 @@
         
         if (weakSelf) {
             typeof(weakSelf) __strong strongSelf = weakSelf;
-            strongSelf.recordPath = path;
+            strongSelf.recordPath = [self getRecorderPath];
             error = nil;
             
             if (strongSelf.recorder) {
@@ -115,34 +109,23 @@
                 strongSelf.recorder.meteringEnabled = YES;
                 [strongSelf.recorder recordForDuration:(NSTimeInterval) 160];
             }
-            
             if(error) {
                 return;
             }
+            if ([_recorder record]) {
+                if (startRecorderCompletion)
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self resetTimer];
+                        self.timer =[NSTimer scheduledTimerWithTimeInterval:0.05 target: self selector: @selector(updateMeters) userInfo:nil repeats: YES];
+
+                        startRecorderCompletion();
+                    });
+            }
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (!prepareRecorderCompletion()) {
-                    [strongSelf cancelledDeleteWithCompletion:^{
-                    }];
-                }
-            });
         }
     });
-}
 
-
-#pragma mark - 开始录音
-
-- (void)startRecordingWithStartRecorderCompletion:(TJStartRecorderCompletion)startRecorderCompletion{
-    if ([_recorder record]) {
-        [self resetTimer];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateMeters) userInfo:nil repeats:YES];
-        if (startRecorderCompletion)
-            dispatch_async(dispatch_get_main_queue(), ^{
-                startRecorderCompletion();
-            });
-    }
+   
 }
 
 
@@ -204,6 +187,7 @@
 }
 #pragma mark - 更新进度
 - (void)updateMeters {
+    NSLog(@"111111");
     if (!_recorder)
         return;
     
@@ -238,6 +222,8 @@
                 _maxTimeStopRecorderCompletion();
             });
         }
+      NSLog(@"%@",self.recordPath)  ;
+
     });
 }
 

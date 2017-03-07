@@ -4,7 +4,7 @@
 //
 //  Created by 王朋涛 on 17/3/2.
 //  Copyright © 2017年 tao. All rights reserved.
-//
+//  声音播放
 
 #import <Foundation/Foundation.h>
 #import "TJAudioPlayerManager.h"
@@ -27,4 +27,5 @@
 @property (nonatomic, copy) NSString *playingFileName;
 @property (nonatomic, assign) id <TJAudioPlayerManagerDelegate> delegate;
 
+- (void)managerAudioWithFileName:(NSString*)amrName toPlay:(BOOL)toPlay;
 @end
