@@ -11,10 +11,8 @@
 #import "TJAudioPlayerManager.h"
 #import "TJVoiceRecordManager.h"
 
-@interface TJAudioPlayerView : UIView<UIGestureRecognizerDelegate>
+@interface TJAudioPlayerView : UIView<UIGestureRecognizerDelegate,TJAudioPlayerManagerDelegate>
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic,strong) TJVoiceRecordManager *voiceRecord;
-
-
 
 @end

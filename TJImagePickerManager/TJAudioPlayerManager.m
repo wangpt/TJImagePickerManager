@@ -82,14 +82,6 @@
     return _player.isPlaying;
 }
 #pragma mark - Public Methed
-
-- (void)managerAudioWithFileName:(NSString*)amrName toPlay:(BOOL)toPlay {
-    if (toPlay) {
-        [self playAudioWithFileName:amrName];
-    } else {
-        [self pausePlayingAudio];
-    }
-}
 //暂停
 - (void)pausePlayingAudio {
     if (_player) {

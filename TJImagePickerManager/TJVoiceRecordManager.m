@@ -187,7 +187,6 @@
 }
 #pragma mark - 更新进度
 - (void)updateMeters {
-    NSLog(@"111111");
     if (!_recorder)
         return;
     
@@ -222,7 +221,6 @@
                 _maxTimeStopRecorderCompletion();
             });
         }
-      NSLog(@"%@",self.recordPath)  ;
 
     });
 }

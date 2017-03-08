@@ -9,12 +9,18 @@
 #import "TJAudioPlayerView.h"
 #define BLACK_HEIGHT 230
 #define BLACK_WIDTH 210
+#define RGB(R,G,B,A) [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:A/1.0]
 
 @interface TJAudioPlayerView ()
 
 @property (retain, nonatomic) UIButton * recordButton;
 @property (retain, nonatomic) UIButton * finishButton;
 @property (retain, nonatomic) UIButton * playButton;
+@property (retain, nonatomic) UIView * blackView;
+@property (retain, nonatomic) UIImageView *animateImageView;
+@property (retain, nonatomic) UIImageView *animateBackImageView;
+
+
 
 
 @end
@@ -70,6 +76,21 @@
     return self.frame.size.width;
 }
 #pragma mark - init
+- (UIView *)blackView{
+    if (!_blackView) {
+        _blackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BLACK_WIDTH, BLACK_HEIGHT)];
+        _blackView.center = self.center;
+        _blackView.layer.cornerRadius = 10;
+        _blackView.backgroundColor = RGB(0, 0, 0, 0.8);
+        [_blackView addSubview:self.animateBackImageView];
+        [_blackView addSubview:self.animateImageView];
+        [_blackView addSubview:self.recordButton];
+        [_blackView addSubview:self.playButton];
+        [_blackView addSubview:self.finishButton];
+
+    }
+    return _blackView;
+}
 
 - (UIButton *)recordButton{
     if (!_recordButton) {
@@ -89,8 +110,8 @@
         _playButton.frame = CGRectMake(20, 0, 40, 44);
         _playButton.center = CGPointMake(_playButton.center.x,BLACK_HEIGHT-44);
         [_playButton setTitle:@"播放" forState:UIControlStateNormal];
-        [_playButton addTarget:self action:@selector(playPause) forControlEvents:UIControlEventTouchUpInside];
-//        _playButton.hidden = YES;
+        [_playButton addTarget:self action:@selector(playOrPausePlayer) forControlEvents:UIControlEventTouchUpInside];
+        _playButton.hidden = YES;
         
     }
     return _playButton;
@@ -102,16 +123,50 @@
         _finishButton.frame = CGRectMake(BLACK_WIDTH-40-20, 0, 40, 44);
         _finishButton.center = CGPointMake(_finishButton.center.x,BLACK_HEIGHT-44);
         [_finishButton setTitle:@"完成" forState:UIControlStateNormal];
-
-//        _finishButton.hidden = YES;
+        [_finishButton addTarget:self action:@selector(finishPlayer) forControlEvents:UIControlEventTouchUpInside];
+        _finishButton.hidden = YES;
 
     }
     return _finishButton;
+}
+- (UIImageView *)animateBackImageView{
+    if (!_animateBackImageView) {
+        _animateBackImageView = [[UIImageView alloc]init];
+        _animateBackImageView.frame = CGRectMake(100, 20, 75, 110);
+        _animateBackImageView.center = CGPointMake(BLACK_WIDTH/2,90);
+        _animateBackImageView.image = [UIImage imageNamed:@"record_animate_01"];
+
+    }
+    return _animateBackImageView;
+
+}
+- (UIImageView *)animateImageView{
+    if (!_animateImageView) {
+        _animateImageView = [[UIImageView alloc]init];
+        _animateImageView.frame = CGRectMake(100, 20, 75, 110);
+        _animateImageView.image = [UIImage imageNamed:@"record_animate_14"];
+        _animateImageView.center = CGPointMake(BLACK_WIDTH/2,90);
+        _animateImageView.contentMode = UIViewContentModeBottom;
+        _animateImageView.clipsToBounds = YES;
+    }
+    return _animateImageView;
+
 }
 
 - (TJVoiceRecordManager *)voiceRecord{
     if (!_voiceRecord) {
         _voiceRecord = [[TJVoiceRecordManager alloc]init];
+        typeof(self) __weak weakSelf = self;
+        _voiceRecord.peakPowerForChannel = ^(float peakPowerForChannel) {
+            typeof(weakSelf) __strong strongSelf = weakSelf;
+
+           CGFloat height =  _animateImageView.frame.size.height*peakPowerForChannel;
+            [TJAudioPlayerView setHeight:height view:strongSelf.animateImageView];
+//        _animateImageView.frame= CGRectMake(originX, originY+dis*self.bgImageView.bounds.size.height, self.topImageView.frame.size.width  , self.bgImageView.bounds.size.height*lowPassResults);
+
+            NSLog(@"%f",peakPowerForChannel);
+//            weakSelf.voiceRecordHUD.peakPower = peakPowerForChannel;
+        };
         
     }
     return _voiceRecord;
@@ -130,15 +185,8 @@
 
 - (void)setup{
     //背景色
-    UIView *blackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, BLACK_WIDTH, BLACK_HEIGHT)];
-    blackView.layer.cornerRadius=10;
-    [self addSubview:blackView];
-    blackView.alpha = 0.8;
-    blackView.center = self.center;
-    blackView.backgroundColor =[UIColor blackColor];
-    [blackView addSubview:self.recordButton];
-    [blackView addSubview:self.playButton];
-    [blackView addSubview:self.finishButton];
+    [self addSubview:self.blackView];
+
 
 }
 
@@ -160,38 +208,43 @@
             typeof(weakSelf) __strong strongSelf = weakSelf;
             strongSelf.recordButton.hidden = YES;
             strongSelf.finishButton.hidden = NO;
+            strongSelf.playButton.hidden = NO;
+
 
         }];
     }
 }
-#pragma mark - 播放录音
+#pragma mark - 播放或暂停录音
 
-- (void)playPause{
-//    if([player isPlaying])
-//    {
-//        [player pause];
-//        [self.playBtn setTitle:@"播放" forState:UIControlStateNormal];
-//    }
-//    //If the track is not player, play the track and change the play button to "Pause"
-//    else
-//    {
-//        [player play];
-//        [self.playBtn setTitle:@"暂停" forState:UIControlStateNormal];
-//    }
-   
+- (void)playOrPausePlayer{
     TJAudioPlayerManager *audioPlayer= [TJAudioPlayerManager shareInstance];
-    if ([audioPlayer.player isPlaying]) {
-        [[TJAudioPlayerManager shareInstance]managerAudioWithFileName:self.voiceRecord.recordPath toPlay:NO];
+    audioPlayer.delegate = self;
+    if (![audioPlayer isPlaying]) {
+        [[TJAudioPlayerManager shareInstance]playAudioWithFileName:self.voiceRecord.recordPath];
+        [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
 
     }else{
-        [[TJAudioPlayerManager shareInstance]managerAudioWithFileName:self.voiceRecord.recordPath toPlay:YES];
+        [[TJAudioPlayerManager shareInstance]pausePlayingAudio];
+        [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
 
     }
-    
 
 }
 #pragma mark - 完成录音
 
+- (void)finishPlayer{
+    [[TJAudioPlayerManager shareInstance] stopAudio];
+    NSLog(@"%@",self.voiceRecord.recordPath);
+    [self removeFromSuperview];
+
+}
+
+
+- (void)didAudioPlayerStopPlay:(AVAudioPlayer*)audioPlayer{
+    [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
+
+
+}
 
 
 

@@ -26,6 +26,8 @@
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, copy) NSString *playingFileName;
 @property (nonatomic, assign) id <TJAudioPlayerManagerDelegate> delegate;
-
-- (void)managerAudioWithFileName:(NSString*)amrName toPlay:(BOOL)toPlay;
+- (BOOL)isPlaying;//播放状态
+- (void)playAudioWithFileName:(NSString*)fileName;//播放
+- (void)pausePlayingAudio;//暂停
+- (void)stopAudio;//停止
 @end
