@@ -92,8 +92,11 @@
         }
         NSMutableDictionary * recordSetting = [NSMutableDictionary dictionary];
         [recordSetting setValue :[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-        [recordSetting setValue:[NSNumber numberWithFloat:16000.0] forKey:AVSampleRateKey];
         [recordSetting setValue:[NSNumber numberWithInt: 1] forKey:AVNumberOfChannelsKey];
+        
+        [recordSetting setValue:[NSNumber numberWithFloat:44100] forKey:AVSampleRateKey];
+        
+        
         
         if (weakSelf) {
             typeof(weakSelf) __strong strongSelf = weakSelf;
@@ -204,9 +207,8 @@
             });
         }
         
-        float peakPower = [_recorder averagePowerForChannel:0];
-        double ALPHA = 0.015;
-        double peakPowerForChannel = pow(10, (ALPHA * peakPower));
+        double ALPHA = 0.05;
+        double peakPowerForChannel = pow(10, (ALPHA * [_recorder peakPowerForChannel:0]));
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新扬声器

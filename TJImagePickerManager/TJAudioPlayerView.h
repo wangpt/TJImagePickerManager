@@ -10,9 +10,16 @@
 #import <AVFoundation/AVFoundation.h>
 #import "TJAudioPlayerManager.h"
 #import "TJVoiceRecordManager.h"
+@class TJAudioPlayerView;
+@protocol TJAudioPlayerViewDelegate <NSObject>
+-(void)audioPlayerDidFinishPlaying:(TJAudioPlayerView *)playerView path:(NSString*)path;
+
+@end
+
 
 @interface TJAudioPlayerView : UIView<UIGestureRecognizerDelegate,TJAudioPlayerManagerDelegate>
 @property (nonatomic, strong) AVAudioPlayer *player;
-@property (nonatomic,strong) TJVoiceRecordManager *voiceRecord;
+@property (nonatomic, strong) TJVoiceRecordManager *voiceRecord;
+@property (nonatomic, weak) id <TJAudioPlayerViewDelegate> delegate;
 
 @end

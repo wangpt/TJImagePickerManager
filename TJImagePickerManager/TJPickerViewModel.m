@@ -51,41 +51,29 @@
 
 - (void)takeAssetWithStyle:(TJAssetReportMediaType)type{
     self.type = type;
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if (type ==TJAssetReportMediaTypeCamera) {
-        sourceType = UIImagePickerControllerSourceTypeCamera;
-        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-            UIImagePickerController *imagePickerController = [UIImagePickerController new];
-//            [imagePickerController setAllowsEditing:YES];// 设置是否可以管理已经存在的图片或者视频
-
-            imagePickerController.delegate = self;
-            imagePickerController.title=@"照片";
-            if ([[TJImagePickerManager manager] isCameraAvailable]) {
-                imagePickerController.sourceType = sourceType;
-                [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:imagePickerController animated:YES completion:^{
-                }];
-            }
-        }
-        
-    }else if (type==TJAssetReportMediaTypePhoto){
-        
+    if (type ==TJAssetReportMediaTypePhoto) {//选择照片
         QBImagePickerController* _multipleImagePickerController = [QBImagePickerController new];
         _multipleImagePickerController.delegate = self;
         _multipleImagePickerController.mediaType = QBImagePickerMediaTypeImage;
         _multipleImagePickerController.allowsMultipleSelection = YES;
         _multipleImagePickerController.showsNumberOfSelectedAssets = YES;
-    
         _multipleImagePickerController.maximumNumberOfSelection = self.maximumNumberOfSelection;
         [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:_multipleImagePickerController animated:YES completion:NULL];
-    
-    }else if (type ==TJAssetReportMediaTypeVideo){
-    
-        //UIVideoEditorController
-
-    
-    }
-    
-    else{
+        
+    }else if (type==TJAssetReportMediaTypeCamera){//拍照
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *imagePickerController = [UIImagePickerController new];
+            //            [imagePickerController setAllowsEditing:YES];// 设置是否可以管理已经存在的图片或者视频
+            imagePickerController.delegate = self;
+            imagePickerController.title=@"照片";
+            if ([[TJImagePickerManager manager] isCameraAvailable]) {
+                imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:imagePickerController animated:YES completion:^{
+                }];
+            }
+        }
+        
+    }else if (type==TJAssetReportMediaTypeCameraShot){//拍摄
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             UIImagePickerController *imagePickerController = [UIImagePickerController new];
             imagePickerController.delegate = self;
@@ -96,6 +84,14 @@
             [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:imagePickerController animated:YES completion:^{
             }];
         }
+    
+    
+    }
+    else if(type == TJAssetReportMediaTypeAudio) {//音频
+        UIView * view = [[ UIApplication sharedApplication ] keyWindow ];
+        TJAudioPlayerView *playerView =[[TJAudioPlayerView alloc]initWithFrame:view.frame];
+        playerView.delegate = self;
+        [view addSubview:playerView];
     }
     
     
@@ -157,13 +153,19 @@
     }
     
 }
+#pragma mark - TJAudioPlayerViewDelegate
+- (void)audioPlayerDidFinishPlaying:(TJAudioPlayerView *)playerView path:(NSString *)path{
+    [self refreshCollectionViewWithAddedAsset:path image:nil];
+}
 #pragma mark - 刷新和获取方法
+//当image存在时取出照片
 - (void)refreshCollectionViewWithAddedAsset:(id)asset image:(UIImage *)image {
     if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
         [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:@[asset]];
+        return;
     }
-    if (image) {
-        
+    //播放图片或视频
+    if (image) {//图片
         [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
             NSMutableArray *photos = [[NSMutableArray alloc] init];
             [photos addObject:[MWPhoto photoWithImage:photo]];
@@ -174,12 +176,14 @@
             nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:nc animated:YES completion:nil];
         }];
-    }else{
+    }else{//视频
         
         [[TJImagePickerManager manager]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
-            UIImage *photo = [TJImagePickerManager getVideoImageFromPathUrl:[NSURL fileURLWithPath:outputPath]];
+//            UIImage *photo = [TJImagePickerManager getVideoImageFromPathUrl:[NSURL fileURLWithPath:outputPath]];
             NSMutableArray *photos = [[NSMutableArray alloc] init];
-            [photos addObject:[MWPhoto photoWithImage:photo]];
+//            [photos addObject:[MWPhoto photoWithImage:photo]];
+            [photos addObject:[MWPhoto videoWithURL:[NSURL fileURLWithPath:outputPath]]];
+
             self.photos=photos;
             [self.webphotoBrowser setCurrentPhotoIndex:0];
             [self.webphotoBrowser reloadData];
@@ -187,8 +191,6 @@
             nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:nc animated:YES completion:nil];
             
-//            MPMoviePlayerViewController *playerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:outputPath]];
-//            [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:playerViewController animated:YES completion:nil];
         }];
         
         

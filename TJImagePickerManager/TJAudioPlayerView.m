@@ -132,9 +132,9 @@
 - (UIImageView *)animateBackImageView{
     if (!_animateBackImageView) {
         _animateBackImageView = [[UIImageView alloc]init];
-        _animateBackImageView.frame = CGRectMake(100, 20, 75, 110);
-        _animateBackImageView.center = CGPointMake(BLACK_WIDTH/2,90);
-        _animateBackImageView.image = [UIImage imageNamed:@"record_animate_01"];
+        CGFloat x = self.blackView.frame.size.width/2 - 76/2;
+        _animateBackImageView.frame = CGRectMake(x, 40, 76, 110);
+        _animateBackImageView.image = [UIImage imageNamed:@"record_animate_back"];
 
     }
     return _animateBackImageView;
@@ -143,9 +143,9 @@
 - (UIImageView *)animateImageView{
     if (!_animateImageView) {
         _animateImageView = [[UIImageView alloc]init];
-        _animateImageView.frame = CGRectMake(100, 20, 75, 110);
-        _animateImageView.image = [UIImage imageNamed:@"record_animate_14"];
-        _animateImageView.center = CGPointMake(BLACK_WIDTH/2,90);
+        CGFloat x = self.blackView.frame.size.width/2 - 76/2;
+        _animateImageView.frame = CGRectMake(x, 40, 76, 110);
+        _animateImageView.image = [UIImage imageNamed:@"record_animate_play"];
         _animateImageView.contentMode = UIViewContentModeBottom;
         _animateImageView.clipsToBounds = YES;
     }
@@ -159,13 +159,11 @@
         typeof(self) __weak weakSelf = self;
         _voiceRecord.peakPowerForChannel = ^(float peakPowerForChannel) {
             typeof(weakSelf) __strong strongSelf = weakSelf;
+            CGFloat height =  strongSelf.animateBackImageView.frame.size.height;
+            double dis = 1 - peakPowerForChannel;
+            [TJAudioPlayerView setY:40+dis*height view:strongSelf.animateImageView];
+            [TJAudioPlayerView setHeight:height*peakPowerForChannel view:strongSelf.animateImageView];
 
-           CGFloat height =  _animateImageView.frame.size.height*peakPowerForChannel;
-            [TJAudioPlayerView setHeight:height view:strongSelf.animateImageView];
-//        _animateImageView.frame= CGRectMake(originX, originY+dis*self.bgImageView.bounds.size.height, self.topImageView.frame.size.width  , self.bgImageView.bounds.size.height*lowPassResults);
-
-            NSLog(@"%f",peakPowerForChannel);
-//            weakSelf.voiceRecordHUD.peakPower = peakPowerForChannel;
         };
         
     }
@@ -177,28 +175,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setup];
+        [self addSubview:self.blackView];
     }
     return self;
 }
-
-
-- (void)setup{
-    //背景色
-    [self addSubview:self.blackView];
-
-
-}
-
 
 #pragma mark - 长按录音
 - (void)recordBtnLongPressed:(UILongPressGestureRecognizer*) longPressedRecognizer{
     //长按开始
     if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
-
         [self.voiceRecord startRecordingWithStartRecorderCompletion:^{
-
-            
         }];
         
     }//长按结束
@@ -234,7 +220,9 @@
 
 - (void)finishPlayer{
     [[TJAudioPlayerManager shareInstance] stopAudio];
-    NSLog(@"%@",self.voiceRecord.recordPath);
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(audioPlayerDidFinishPlaying: path:)]) {
+        [self.delegate audioPlayerDidFinishPlaying:self path:self.voiceRecord.recordPath];
+    }
     [self removeFromSuperview];
 
 }

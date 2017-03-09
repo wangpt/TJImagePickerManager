@@ -47,14 +47,9 @@
     [sheet show];
 }
 - (IBAction)reportAudio:(id)sender {
-//    CGFloat width = self.view.frame.size.width;
-//    TJAudioPlayerView *playerView =[[TJAudioPlayerView alloc]initWithFrame:self.view.frame];
-//    [self.view addSubview:playerView];
-
     
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"录音"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-//        [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
-        
+        [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
         self.recView= [[VoiceRecView alloc]initWithVoiceRecView];
         _recView.delegate=self;
         [self.view addSubview:_recView];
