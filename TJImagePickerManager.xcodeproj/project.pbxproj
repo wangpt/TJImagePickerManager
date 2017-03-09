@@ -17,10 +17,8 @@
 		A84A763E1E6014D4000F1901 /* TJActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A763D1E6014D4000F1901 /* TJActionSheet.m */; };
 		A84A76451E601946000F1901 /* TJImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76401E601946000F1901 /* TJImagePickerManager.m */; };
 		A84A76461E601946000F1901 /* TJMediaLibraryView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76421E601946000F1901 /* TJMediaLibraryView.m */; };
-		A8DAF0881E6D02DC00829250 /* VoiceRecView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0861E6D02DC00829250 /* VoiceRecView.m */; };
-		A8DAF0891E6D02DC00829250 /* VoiceRecView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8DAF0871E6D02DC00829250 /* VoiceRecView.xib */; };
-		A8DAF08C1E6D030E00829250 /* record_animate_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A8DAF08A1E6D030E00829250 /* record_animate_01.png */; };
-		A8DAF08D1E6D030E00829250 /* record_animate_14.png in Resources */ = {isa = PBXBuildFile; fileRef = A8DAF08B1E6D030E00829250 /* record_animate_14.png */; };
+		A89A6B4A1E71356F00DF3525 /* record_animate_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A89A6B481E71356F00DF3525 /* record_animate_back.png */; };
+		A89A6B4B1E71356F00DF3525 /* record_animate_play.png in Resources */ = {isa = PBXBuildFile; fileRef = A89A6B491E71356F00DF3525 /* record_animate_play.png */; };
 		A8DAF0921E6D031E00829250 /* TJAudioPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF08F1E6D031E00829250 /* TJAudioPlayerManager.m */; };
 		A8DAF0931E6D031E00829250 /* TJAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0911E6D031E00829250 /* TJAudioPlayerView.m */; };
 		A8DAF0981E6D033300829250 /* TJPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0951E6D033300829250 /* TJPickerViewModel.m */; };
@@ -46,11 +44,8 @@
 		A84A76401E601946000F1901 /* TJImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJImagePickerManager.m; sourceTree = "<group>"; };
 		A84A76411E601946000F1901 /* TJMediaLibraryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMediaLibraryView.h; sourceTree = "<group>"; };
 		A84A76421E601946000F1901 /* TJMediaLibraryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMediaLibraryView.m; sourceTree = "<group>"; };
-		A8DAF0851E6D02DC00829250 /* VoiceRecView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceRecView.h; sourceTree = "<group>"; };
-		A8DAF0861E6D02DC00829250 /* VoiceRecView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceRecView.m; sourceTree = "<group>"; };
-		A8DAF0871E6D02DC00829250 /* VoiceRecView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceRecView.xib; sourceTree = "<group>"; };
-		A8DAF08A1E6D030E00829250 /* record_animate_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_01.png; sourceTree = "<group>"; };
-		A8DAF08B1E6D030E00829250 /* record_animate_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_14.png; sourceTree = "<group>"; };
+		A89A6B481E71356F00DF3525 /* record_animate_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_back.png; sourceTree = "<group>"; };
+		A89A6B491E71356F00DF3525 /* record_animate_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_play.png; sourceTree = "<group>"; };
 		A8DAF08E1E6D031E00829250 /* TJAudioPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAudioPlayerManager.h; sourceTree = "<group>"; };
 		A8DAF08F1E6D031E00829250 /* TJAudioPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJAudioPlayerManager.m; sourceTree = "<group>"; };
 		A8DAF0901E6D031E00829250 /* TJAudioPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAudioPlayerView.h; sourceTree = "<group>"; };
@@ -104,7 +99,6 @@
 		A84A76241E600733000F1901 /* TJImagePickerManager */ = {
 			isa = PBXGroup;
 			children = (
-				A8DAF09A1E6D034500829250 /* Views */,
 				A84A76481E60194D000F1901 /* TJImagePickerManager */,
 				A84A76281E600733000F1901 /* AppDelegate.h */,
 				A84A76291E600733000F1901 /* AppDelegate.m */,
@@ -132,32 +126,38 @@
 		A84A76481E60194D000F1901 /* TJImagePickerManager */ = {
 			isa = PBXGroup;
 			children = (
-				A8DAF08E1E6D031E00829250 /* TJAudioPlayerManager.h */,
-				A8DAF08F1E6D031E00829250 /* TJAudioPlayerManager.m */,
-				A8DAF0961E6D033300829250 /* TJVoiceRecordManager.h */,
-				A8DAF0971E6D033300829250 /* TJVoiceRecordManager.m */,
+				A89A6B471E71350E00DF3525 /* media */,
+				A89A6B461E7134D200DF3525 /* voice */,
 				A8DAF0941E6D033300829250 /* TJPickerViewModel.h */,
 				A8DAF0951E6D033300829250 /* TJPickerViewModel.m */,
-				A8DAF0901E6D031E00829250 /* TJAudioPlayerView.h */,
-				A8DAF0911E6D031E00829250 /* TJAudioPlayerView.m */,
-				A84A763F1E601946000F1901 /* TJImagePickerManager.h */,
-				A84A76401E601946000F1901 /* TJImagePickerManager.m */,
 				A84A76411E601946000F1901 /* TJMediaLibraryView.h */,
 				A84A76421E601946000F1901 /* TJMediaLibraryView.m */,
 			);
 			name = TJImagePickerManager;
 			sourceTree = "<group>";
 		};
-		A8DAF09A1E6D034500829250 /* Views */ = {
+		A89A6B461E7134D200DF3525 /* voice */ = {
 			isa = PBXGroup;
 			children = (
-				A8DAF08A1E6D030E00829250 /* record_animate_01.png */,
-				A8DAF08B1E6D030E00829250 /* record_animate_14.png */,
-				A8DAF0851E6D02DC00829250 /* VoiceRecView.h */,
-				A8DAF0861E6D02DC00829250 /* VoiceRecView.m */,
-				A8DAF0871E6D02DC00829250 /* VoiceRecView.xib */,
+				A89A6B481E71356F00DF3525 /* record_animate_back.png */,
+				A89A6B491E71356F00DF3525 /* record_animate_play.png */,
+				A8DAF0901E6D031E00829250 /* TJAudioPlayerView.h */,
+				A8DAF0911E6D031E00829250 /* TJAudioPlayerView.m */,
+				A8DAF08E1E6D031E00829250 /* TJAudioPlayerManager.h */,
+				A8DAF08F1E6D031E00829250 /* TJAudioPlayerManager.m */,
+				A8DAF0961E6D033300829250 /* TJVoiceRecordManager.h */,
+				A8DAF0971E6D033300829250 /* TJVoiceRecordManager.m */,
 			);
-			name = Views;
+			name = voice;
+			sourceTree = "<group>";
+		};
+		A89A6B471E71350E00DF3525 /* media */ = {
+			isa = PBXGroup;
+			children = (
+				A84A763F1E601946000F1901 /* TJImagePickerManager.h */,
+				A84A76401E601946000F1901 /* TJImagePickerManager.m */,
+			);
+			name = media;
 			sourceTree = "<group>";
 		};
 		D67FAE8A5D994D300E001FB1 /* Frameworks */ = {
@@ -230,11 +230,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8DAF0891E6D02DC00829250 /* VoiceRecView.xib in Resources */,
+				A89A6B4B1E71356F00DF3525 /* record_animate_play.png in Resources */,
 				A84A76351E600733000F1901 /* LaunchScreen.storyboard in Resources */,
+				A89A6B4A1E71356F00DF3525 /* record_animate_back.png in Resources */,
 				A84A76321E600733000F1901 /* Assets.xcassets in Resources */,
-				A8DAF08D1E6D030E00829250 /* record_animate_14.png in Resources */,
-				A8DAF08C1E6D030E00829250 /* record_animate_01.png in Resources */,
 				A84A76301E600733000F1901 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,7 +300,6 @@
 				A8DAF0981E6D033300829250 /* TJPickerViewModel.m in Sources */,
 				A8DAF0931E6D031E00829250 /* TJAudioPlayerView.m in Sources */,
 				A84A762A1E600733000F1901 /* AppDelegate.m in Sources */,
-				A8DAF0881E6D02DC00829250 /* VoiceRecView.m in Sources */,
 				A84A76451E601946000F1901 /* TJImagePickerManager.m in Sources */,
 				A84A76271E600733000F1901 /* main.m in Sources */,
 				A84A763E1E6014D4000F1901 /* TJActionSheet.m in Sources */,
