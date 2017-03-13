@@ -1,0 +1,2 @@
+# TJImagePickerManager
+base on UIImagePickerView
