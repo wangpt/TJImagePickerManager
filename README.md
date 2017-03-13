@@ -11,9 +11,9 @@ base on UIImagePickerView
 
 # 上传音频
 [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
-＃ 回调方法
+# 回调方法
 [TJPickerViewModel viewModel].delegate = self;
-- (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets;
+tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets;
 
 
 
