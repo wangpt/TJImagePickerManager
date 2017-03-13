@@ -13,6 +13,7 @@ base on UIImagePickerView
 [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
 # 回调方法
 [TJPickerViewModel viewModel].delegate = self;
+
 tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets;
 
 
