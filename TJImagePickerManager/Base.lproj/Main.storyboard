@@ -21,25 +21,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIF-9E-ilp">
-                                <rect key="frame" x="139" y="100" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIF-9E-ilp">
+                                <rect key="frame" x="147.5" y="100" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="R1G-D8-XPC"/>
+                                    <constraint firstAttribute="width" constant="80" id="rsc-G0-U3c"/>
+                                </constraints>
                                 <state key="normal" title="上传图片"/>
                                 <connections>
                                     <action selector="reportPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HIe-ye-jJo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-of-2Ny">
-                                <rect key="frame" x="139" y="200" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-of-2Ny">
+                                <rect key="frame" x="147.5" y="200" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="VQE-QP-PWJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="oTi-wk-aRr"/>
+                                </constraints>
                                 <state key="normal" title="上传视频"/>
                                 <connections>
                                     <action selector="reportVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XtY-Xz-zl3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-UY-C4U">
-                                <rect key="frame" x="139" y="300" width="80" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-UY-C4U">
+                                <rect key="frame" x="147.5" y="300" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="RtN-yt-mIj"/>
+                                    <constraint firstAttribute="width" constant="80" id="bVL-f3-Do0"/>
+                                </constraints>
                                 <state key="normal" title="上传音频"/>
                                 <connections>
                                     <action selector="reportAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MM7-9G-h5d"/>
@@ -47,6 +56,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nSo-of-2Ny" firstAttribute="top" secondItem="hIF-9E-ilp" secondAttribute="bottom" constant="70" id="Hvn-9o-tcr"/>
+                            <constraint firstItem="EZK-UY-C4U" firstAttribute="top" secondItem="nSo-of-2Ny" secondAttribute="bottom" constant="70" id="IVP-mf-PpX"/>
+                            <constraint firstItem="EZK-UY-C4U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ode-so-2X6"/>
+                            <constraint firstItem="hIF-9E-ilp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="80" id="dJl-XS-5A7"/>
+                            <constraint firstItem="hIF-9E-ilp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mY0-mc-gid"/>
+                            <constraint firstItem="nSo-of-2Ny" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tbE-31-hff"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
