@@ -7,18 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TJPickerViewModel.h"
 #define KMiniMediaButton_Height 40
-//#import "BLFile.h"
 
-@interface MiniMediaButton : UIButton
-@property BOOL isTagedDeleted;//是否标记 为 要删除
-//@property(nonatomic,retain) BLFile * file;
-@property(nonatomic,retain) NSString * downString;//判断下载附件地址
-//-(FileRequestType)temType:(UPLOADFILETYPE)type;
 
+@interface TJMediaEntity : NSObject
+@property (nonatomic,strong) id asset;
+@property (nonatomic,strong) NSString * assetPath;
+@property (nonatomic,strong) UIImage * assetImage;
+@property (nonatomic,assign) TJAssetReportMediaType assetType;
 @end
 
 
+@interface LittleMediaButton : UIButton
+@property BOOL isTagedDeleted;//是否标记 为 要删除
+@property(nonatomic,retain) NSString * downString;//判断下载附件地址
+@property(nonatomic,strong) TJMediaEntity * entity;
+@property(nonatomic,assign) TJAssetModelMediaType fileType;//类型
+@end
+
 @interface TJMediaLibraryView : UIView
-@property (nonatomic,assign) float height;
+@property(nonatomic,assign) NSInteger count;//总附件个数
+@property(nonatomic,assign) BOOL order;//排列条件
+
+- (void)addLittleMeidaButtonFromEntity:(TJMediaEntity *)entity;
+- (void)removeAllLittleMediaButton;
 @end

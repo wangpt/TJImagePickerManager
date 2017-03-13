@@ -10,11 +10,11 @@
 #import "TJActionSheet.h"
 #import "TJImagePickerManager.h"
 #import <MediaPlayer/MPMoviePlayerViewController.h>
-#import "VoiceRecView.h"
 #import "TJVoiceRecordManager.h"
 #import "TJAudioPlayerView.h"
-@interface ViewController ()<VoiceDelegate>
-@property (nonatomic,strong)VoiceRecView * recView;
+#import "TJMediaLibraryView.h"
+@interface ViewController ()
+@property (nonatomic,strong)TJMediaLibraryView * libraryView;
 @property (nonatomic,strong)TJVoiceRecordManager * voiceRecord;
 
 @end
@@ -24,11 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    CGFloat width = self.view.frame.size.width;
     [TJPickerViewModel viewModel].delegate = self;
-
+    self.libraryView =[[TJMediaLibraryView alloc]initWithFrame:CGRectMake(0, 400, width, 44)];
+    [self.view addSubview:self.libraryView];
+    self.libraryView.backgroundColor = [UIColor redColor];
 }
 - (IBAction)reportPhoto:(id)sender {
-    
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"从手机选择",@"拍照"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             [TJPickerViewModel viewModel].maximumNumberOfSelection = 2;
@@ -50,10 +52,7 @@
     
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"录音"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
-        self.recView= [[VoiceRecView alloc]initWithVoiceRecView];
-        _recView.delegate=self;
-        [self.view addSubview:_recView];
-        self.recView.frame =CGRectMake((self.view.frame.size.width-self.recView.frame.size.width)/2, self.recView.frame.origin.y, self.recView.frame.size.width, self.recView.frame.size.height);
+    
 
     }];
     
@@ -61,21 +60,58 @@
     
 }
 
--(void)voiceFinishedWith:(NSString *)voiceurl{
-    [self.recView removeFromSuperview];
-    self.recView.delegate=nil;
-//    TJImageEntity *entity =[[TJImageEntity alloc]init];
-//    entity.assetPath = voiceurl;
-//    entity.assetType = VOICETYPE;
-//    [self addMediaBtnWithEntity:entity];
-}
+
 - (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets{
-    NSLog(@"%@",assets);
 
-    
-    
+    if (type == TJAssetReportMediaTypePhoto) {
+        [assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            PHAsset *asset = obj;
+            [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
+                TJMediaEntity *entity =[[TJMediaEntity alloc]init];
+                entity.asset = asset;
+                entity.assetImage = photo;
+                entity.assetType = type;
+                [self.libraryView addLittleMeidaButtonFromEntity:entity];
+
+            }];
+        }];
+        
+    }else if (type ==TJAssetReportMediaTypeCamera){
+        [assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            PHAsset *asset = obj;
+            [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
+                TJMediaEntity *entity =[[TJMediaEntity alloc]init];
+                entity.asset = asset;
+                entity.assetImage = photo;
+                entity.assetType = type;
+                [self.libraryView addLittleMeidaButtonFromEntity:entity];
+            }];
+        }];
+        
+    }else if (type ==TJAssetReportMediaTypeCameraShot){
+        PHAsset *asset = assets.firstObject;
+        [[TJImagePickerManager manager]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
+            TJMediaEntity *entity =[[TJMediaEntity alloc]init];
+            entity.asset = asset;
+            entity.assetPath = outputPath;
+            entity.assetType = type;
+            [self.libraryView addLittleMeidaButtonFromEntity:entity];
+            
+        }];
+        
+        
+    }else{
+        NSString *path = assets.firstObject;
+        TJMediaEntity *entity =[[TJMediaEntity alloc]init];
+        entity.assetPath = path;
+        entity.assetType = TJAssetReportMediaTypeAudio;
+        [self.libraryView addLittleMeidaButtonFromEntity:entity];
+        
+    }
+
 
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

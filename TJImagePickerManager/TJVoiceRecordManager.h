@@ -39,5 +39,6 @@ typedef void(^TJStartRecorderCompletion)();
 
 - (void)startRecordingWithStartRecorderCompletion:(TJStartRecorderCompletion)startRecorderCompletion;
 - (void)stopRecordingWithStopRecorderCompletion:(TJStopRecorderCompletion)stopRecorderCompletion;
+- (void)cancelledDeleteWithCompletion:(TJCancellRecorderDeleteFileCompletion)cancelledDeleteCompletion;
 
 @end

@@ -19,6 +19,7 @@
 		A84A76461E601946000F1901 /* TJMediaLibraryView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76421E601946000F1901 /* TJMediaLibraryView.m */; };
 		A89A6B4A1E71356F00DF3525 /* record_animate_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A89A6B481E71356F00DF3525 /* record_animate_back.png */; };
 		A89A6B4B1E71356F00DF3525 /* record_animate_play.png in Resources */ = {isa = PBXBuildFile; fileRef = A89A6B491E71356F00DF3525 /* record_animate_play.png */; };
+		A8B448FB1E763D8D000DA461 /* record_voice.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B448FA1E763D8D000DA461 /* record_voice.png */; };
 		A8DAF0921E6D031E00829250 /* TJAudioPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF08F1E6D031E00829250 /* TJAudioPlayerManager.m */; };
 		A8DAF0931E6D031E00829250 /* TJAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0911E6D031E00829250 /* TJAudioPlayerView.m */; };
 		A8DAF0981E6D033300829250 /* TJPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0951E6D033300829250 /* TJPickerViewModel.m */; };
@@ -46,6 +47,7 @@
 		A84A76421E601946000F1901 /* TJMediaLibraryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMediaLibraryView.m; sourceTree = "<group>"; };
 		A89A6B481E71356F00DF3525 /* record_animate_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_back.png; sourceTree = "<group>"; };
 		A89A6B491E71356F00DF3525 /* record_animate_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_play.png; sourceTree = "<group>"; };
+		A8B448FA1E763D8D000DA461 /* record_voice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_voice.png; sourceTree = "<group>"; };
 		A8DAF08E1E6D031E00829250 /* TJAudioPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAudioPlayerManager.h; sourceTree = "<group>"; };
 		A8DAF08F1E6D031E00829250 /* TJAudioPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJAudioPlayerManager.m; sourceTree = "<group>"; };
 		A8DAF0901E6D031E00829250 /* TJAudioPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJAudioPlayerView.h; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		A89A6B461E7134D200DF3525 /* voice */ = {
 			isa = PBXGroup;
 			children = (
+				A8B448FA1E763D8D000DA461 /* record_voice.png */,
 				A89A6B481E71356F00DF3525 /* record_animate_back.png */,
 				A89A6B491E71356F00DF3525 /* record_animate_play.png */,
 				A8DAF0901E6D031E00829250 /* TJAudioPlayerView.h */,
@@ -233,6 +236,7 @@
 				A89A6B4B1E71356F00DF3525 /* record_animate_play.png in Resources */,
 				A84A76351E600733000F1901 /* LaunchScreen.storyboard in Resources */,
 				A89A6B4A1E71356F00DF3525 /* record_animate_back.png in Resources */,
+				A8B448FB1E763D8D000DA461 /* record_voice.png in Resources */,
 				A84A76321E600733000F1901 /* Assets.xcassets in Resources */,
 				A84A76301E600733000F1901 /* Main.storyboard in Resources */,
 			);

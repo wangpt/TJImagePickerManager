@@ -92,6 +92,7 @@
     return _blackView;
 }
 
+
 - (UIButton *)recordButton{
     if (!_recordButton) {
         _recordButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -175,9 +176,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIView *backView =[[UIView alloc]initWithFrame:self.frame];
+        [self addSubview:backView];
+        UITapGestureRecognizer * tapGestureRecognizer = [[UITapGestureRecognizer alloc]init];
+        [backView addGestureRecognizer:tapGestureRecognizer];
+        [tapGestureRecognizer addTarget:self action:@selector(cancelledFormSubView)];
         [self addSubview:self.blackView];
     }
     return self;
+}
+
+
+- (void)cancelledFormSubView{
+    [self.voiceRecord cancelledDeleteWithCompletion:^{
+        [self removeFromSuperview];
+    }];
 }
 
 #pragma mark - 长按录音
@@ -230,8 +243,6 @@
 
 - (void)didAudioPlayerStopPlay:(AVAudioPlayer*)audioPlayer{
     [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
-
-
 }
 
 
