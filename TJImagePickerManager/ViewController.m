@@ -63,7 +63,7 @@
 
 - (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets{
 
-    if (type == TJAssetReportMediaTypePhoto) {
+    if (type == TJAssetReportMediaTypePhoto||type ==TJAssetReportMediaTypeCamera) {//照片
         [assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             PHAsset *asset = obj;
             [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
@@ -76,19 +76,7 @@
             }];
         }];
         
-    }else if (type ==TJAssetReportMediaTypeCamera){
-        [assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            PHAsset *asset = obj;
-            [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
-                TJMediaEntity *entity =[[TJMediaEntity alloc]init];
-                entity.asset = asset;
-                entity.assetImage = photo;
-                entity.assetType = type;
-                [self.libraryView addLittleMeidaButtonFromEntity:entity];
-            }];
-        }];
-        
-    }else if (type ==TJAssetReportMediaTypeCameraShot){
+    }else if (type ==TJAssetReportMediaTypeCameraShot){//录像
         PHAsset *asset = assets.firstObject;
         [[TJImagePickerManager manager]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
             TJMediaEntity *entity =[[TJMediaEntity alloc]init];
@@ -100,7 +88,7 @@
         }];
         
         
-    }else{
+    }else{//录音
         NSString *path = assets.firstObject;
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = path;
@@ -111,7 +99,6 @@
 
 
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
