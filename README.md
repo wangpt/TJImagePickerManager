@@ -4,16 +4,16 @@ base on UIImagePickerView
 ![image](https://github.com/wangpt/TJImagePickerManager/blob/master/Untitled.gif)
 # 上传图片
             
-     [TJPickerViewModel viewModel].maximumNumberOfSelection = 2;
-     [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypePhoto];
+     [TJPickerViewModel shareSingle].maximumNumberOfSelection = 2;
+     [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypePhoto];
 # 上传视频
-     [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeCameraShot];
+     [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeCameraShot];
 
 # 上传音频
-    [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
+    [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
 
 # 回调方法
-    [TJPickerViewModel viewModel].delegate = self;
+    [TJPickerViewModel shareSingle].delegate = self;
     - (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets;
 
 # 视图页面初始化
