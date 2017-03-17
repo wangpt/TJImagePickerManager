@@ -23,7 +23,7 @@
 
 @implementation TJPickerViewModel
 #pragma mark - 单利
-+ (instancetype)viewModel
++ (instancetype)shareSingle
 {
     static TJPickerViewModel * _manager = nil;
     static dispatch_once_t onceToken;

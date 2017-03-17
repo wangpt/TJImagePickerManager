@@ -25,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     CGFloat width = self.view.frame.size.width;
-    [TJPickerViewModel viewModel].delegate = self;
+    [TJPickerViewModel shareSingle].delegate = self;
     self.libraryView =[[TJMediaLibraryView alloc]initWithFrame:CGRectMake(0, 400, width, 44)];
     [self.view addSubview:self.libraryView];
     self.libraryView.backgroundColor = [UIColor redColor];
@@ -33,17 +33,17 @@
 - (IBAction)reportPhoto:(id)sender {
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"从手机选择",@"拍照"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
-            [TJPickerViewModel viewModel].maximumNumberOfSelection = 2;
-            [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypePhoto];
+            [TJPickerViewModel shareSingle].maximumNumberOfSelection = 2;
+            [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypePhoto];
         }else if (buttonIndex == 1){
-            [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeCamera];
+            [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeCamera];
         }
     }];
     [sheet show];
 }
 - (IBAction)reportVideo:(id)sender {
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"拍摄"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-        [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeCameraShot];
+        [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeCameraShot];
     }];
     
     [sheet show];
@@ -51,7 +51,7 @@
 - (IBAction)reportAudio:(id)sender {
     
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"录音"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-        [[TJPickerViewModel viewModel] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
+        [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
     
 
     }];
