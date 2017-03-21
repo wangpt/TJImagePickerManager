@@ -66,7 +66,7 @@
             //            [imagePickerController setAllowsEditing:YES];// 设置是否可以管理已经存在的图片或者视频
             imagePickerController.delegate = self;
             imagePickerController.title=@"照片";
-            if ([[TJImagePickerManager manager] isCameraAvailable]) {
+            if ([[TJImagePickerManager shareInstance] isCameraAvailable]) {
                 imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:imagePickerController animated:YES completion:^{
                 }];
@@ -124,12 +124,12 @@
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        [[TJImagePickerManager manager] saveAssectWithAlbumName:@"应急指挥" fileUrl:nil fileImage:image completion:^(NSError *error) {
+        [[TJImagePickerManager shareInstance] saveAssectWithAlbumName:@"应急指挥" fileUrl:nil fileImage:image completion:^(NSError *error) {
             if (error) {
                 NSLog(@"图片保存失败 %@",error);
             }else{
                 ///成功保存后进行获取
-                [[TJImagePickerManager manager] getAssetsWithAllowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TJAssetModel *> *models) {
+                [[TJImagePickerManager shareInstance] getAssetsWithAllowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TJAssetModel *> *models) {
                     TJAssetModel *assetModel = [models lastObject];
                     [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
                 }];
@@ -138,12 +138,12 @@
         
     }else{
         NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
-        [[TJImagePickerManager manager] saveAssectWithAlbumName:@"应急指挥" fileUrl:videoURL fileImage:nil completion:^(NSError *error) {
+        [[TJImagePickerManager shareInstance] saveAssectWithAlbumName:@"应急指挥" fileUrl:videoURL fileImage:nil completion:^(NSError *error) {
             if (error) {
                 NSLog(@"视频保存失败 %@",error);
             }else{
                 ///成功保存后进行获取
-                [[TJImagePickerManager manager] getAssetsWithAllowPickingVideo:YES allowPickingImage:NO completion:^(NSArray<TJAssetModel *> *models) {
+                [[TJImagePickerManager shareInstance] getAssetsWithAllowPickingVideo:YES allowPickingImage:NO completion:^(NSArray<TJAssetModel *> *models) {
                     TJAssetModel *assetModel = [models lastObject];
                     [self refreshCollectionViewWithAddedAsset:assetModel.asset image:nil];
                 }];
@@ -166,7 +166,7 @@
     }
     //播放图片或视频
     if (image) {//图片
-        [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
+        [[TJImagePickerManager shareInstance]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
             NSMutableArray *photos = [[NSMutableArray alloc] init];
             [photos addObject:[MWPhoto photoWithImage:photo]];
             self.photos=photos;
@@ -178,7 +178,7 @@
         }];
     }else{//视频
         
-        [[TJImagePickerManager manager]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
+        [[TJImagePickerManager shareInstance]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
 //            UIImage *photo = [TJImagePickerManager getVideoImageFromPathUrl:[NSURL fileURLWithPath:outputPath]];
             NSMutableArray *photos = [[NSMutableArray alloc] init];
 //            [photos addObject:[MWPhoto photoWithImage:photo]];

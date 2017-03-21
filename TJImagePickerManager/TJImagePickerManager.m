@@ -88,7 +88,7 @@
 
 }
 #pragma mark - 单利
-+ (instancetype)manager
++ (instancetype)shareInstance
 {
     static TJImagePickerManager * _manager = nil;
     static dispatch_once_t onceToken;
@@ -393,7 +393,7 @@
 /// Get Assets 获得照片数组
 
 - (void)getAssetsWithAllowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TJAssetModel *> *))completion {
-    [[TJImagePickerManager manager] getCameraRollAlbum:allowPickingVideo allowPickingImage:allowPickingImage completion:^(TJAlbumModel *model) {
+    [[TJImagePickerManager shareInstance] getCameraRollAlbum:allowPickingVideo allowPickingImage:allowPickingImage completion:^(TJAlbumModel *model) {
         NSMutableArray *photoArr = [NSMutableArray array];
         if ([model.result isKindOfClass:[PHFetchResult class]]) {
             PHFetchResult *fetchResult = (PHFetchResult *)model.result;

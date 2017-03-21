@@ -66,7 +66,7 @@
     if (type == TJAssetReportMediaTypePhoto||type ==TJAssetReportMediaTypeCamera) {//照片
         [assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             PHAsset *asset = obj;
-            [[TJImagePickerManager manager]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
+            [[TJImagePickerManager shareInstance]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
                 TJMediaEntity *entity =[[TJMediaEntity alloc]init];
                 entity.asset = asset;
                 entity.assetImage = photo;
@@ -78,7 +78,7 @@
         
     }else if (type ==TJAssetReportMediaTypeCameraShot){//录像
         PHAsset *asset = assets.firstObject;
-        [[TJImagePickerManager manager]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
+        [[TJImagePickerManager shareInstance]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
             TJMediaEntity *entity =[[TJMediaEntity alloc]init];
             entity.asset = asset;
             entity.assetPath = outputPath;

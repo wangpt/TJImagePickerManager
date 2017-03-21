@@ -54,7 +54,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL sortAscendingByModificationDate;
 
 ///单利
-+ (instancetype)manager ;
++ (instancetype)shareInstance ;
 
 ///是否有摄像头
 - (BOOL) isCameraAvailable;
