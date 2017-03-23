@@ -42,8 +42,15 @@
     [sheet show];
 }
 - (IBAction)reportVideo:(id)sender {
-    TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"拍摄"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
-        [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeCameraShot];
+    TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"从手机选择",@"拍摄"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeVideo];
+
+        }else{
+        
+            [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeCameraShot];
+
+        }
     }];
     
     [sheet show];
@@ -88,7 +95,16 @@
         }];
         
         
-    }else{//录音
+    }else if (type ==TJAssetReportMediaTypeVideo){
+    
+        TJMediaEntity *entity =[[TJMediaEntity alloc]init];
+        entity.assetPath = assets.firstObject;
+        entity.assetType = type;
+        [self.libraryView addLittleMeidaButtonFromEntity:entity];
+    
+    }
+    
+    else{//录音
         NSString *path = assets.firstObject;
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = path;
@@ -99,7 +115,10 @@
 
 
 }
+- (void)videoEditorController:(UIVideoEditorController *)editor didSaveEditedVideoToPath:(NSString *)editedVideoPath{
 
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

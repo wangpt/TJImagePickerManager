@@ -19,7 +19,7 @@
 - (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets;
 @end
 
-@interface TJPickerViewModel : NSObject<UIImagePickerControllerDelegate,UINavigationControllerDelegate,MWPhotoBrowserDelegate,QBImagePickerControllerDelegate,TJAudioPlayerViewDelegate>
+@interface TJPickerViewModel : NSObject<UIImagePickerControllerDelegate,UINavigationControllerDelegate,MWPhotoBrowserDelegate,QBImagePickerControllerDelegate,TJAudioPlayerViewDelegate,UIVideoEditorControllerDelegate>
 @property (nonatomic, assign) NSUInteger maximumNumberOfSelection;
 @property (nonatomic, assign) NSTimeInterval videoMaximumDuration ;//设置最长录制5分钟
 

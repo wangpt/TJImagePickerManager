@@ -29,7 +29,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _manager = [[self alloc]init];
-        _manager.videoMaximumDuration = 60.0f;
+        _manager.videoMaximumDuration = 30.0f;
         _manager.maximumNumberOfSelection = 3;
     });
     return _manager;
@@ -87,6 +87,17 @@
     
     
     }
+    else if(type == TJAssetReportMediaTypeVideo) {//选择视频并编辑
+        QBImagePickerController* _multipleImagePickerController = [QBImagePickerController new];
+        _multipleImagePickerController.delegate = self;
+        _multipleImagePickerController.mediaType = QBImagePickerMediaTypeVideo;
+        _multipleImagePickerController.allowsMultipleSelection = YES;
+        _multipleImagePickerController.showsNumberOfSelectedAssets = YES;
+        _multipleImagePickerController.maximumNumberOfSelection = 1;
+        [[[ UIApplication sharedApplication ] keyWindow ].rootViewController presentViewController:_multipleImagePickerController animated:YES completion:NULL];
+        
+        
+    }
     else if(type == TJAssetReportMediaTypeAudio) {//音频
         UIView * view = [[ UIApplication sharedApplication ] keyWindow ];
         TJAudioPlayerView *playerView =[[TJAudioPlayerView alloc]initWithFrame:view.frame];
@@ -100,12 +111,42 @@
 #pragma mark - QBImagePickerControllerDelegate
 - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets
 {
-    NSLog(@"Selected assets:");
-    NSLog(@"%@", assets);
-    if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
-        [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:assets];
-    }
     [[[ UIApplication sharedApplication ] keyWindow ].rootViewController dismissViewControllerAnimated:YES completion:NULL];
+
+    if (imagePickerController.mediaType == QBImagePickerMediaTypeVideo) {
+        PHAsset *asset = assets.firstObject;
+        [[TJImagePickerManager shareInstance]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
+            UIVideoEditorController *editVC;
+            // 检查这个视频资源能不能被修改
+            if ([UIVideoEditorController canEditVideoAtPath:outputPath]) {
+                editVC = [[UIVideoEditorController alloc] init];
+                editVC.videoMaximumDuration = 30;
+                editVC.videoPath = outputPath;
+                editVC.delegate = self;
+                [[[ UIApplication sharedApplication ] keyWindow ].rootViewController  presentViewController:editVC animated:YES completion:nil];
+            }
+
+            
+        }];
+        
+        
+        
+    }else{
+    
+        if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
+            [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:assets];
+        }
+       // [[[ UIApplication sharedApplication ] keyWindow ].rootViewController dismissViewControllerAnimated:YES completion:NULL];
+    }
+    
+
+}
+
+- (void)videoEditorController:(UIVideoEditorController *)editor didSaveEditedVideoToPath:(NSString *)editedVideoPath{
+
+    if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
+        [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:@[editedVideoPath]];
+    }
 }
 
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController
