@@ -4,7 +4,8 @@
 //
 //  Created by 王朋涛 on 17/2/15.
 //  Copyright © 2017年 tao. All rights reserved.
-//
+//  选择视频或图片
+
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Photos/Photos.h>

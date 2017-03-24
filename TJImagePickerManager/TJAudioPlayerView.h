@@ -4,7 +4,7 @@
 //
 //  Created by 王朋涛 on 17/2/28.
 //  Copyright © 2017年 tao. All rights reserved.
-//
+//  录音显示页面
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
