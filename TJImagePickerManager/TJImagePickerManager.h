@@ -76,6 +76,7 @@ typedef enum : NSUInteger {
 /// Get Assets 获得Asset数组
 - (void)getAssetsWithAllowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TJAssetModel *> *))completion;
 
+
 ///获取原图
 - (void)getOriginalPhotoWithAsset:(id)asset completion:(void (^)(UIImage *photo,NSDictionary *info))completion;
 

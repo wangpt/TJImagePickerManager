@@ -62,7 +62,7 @@
         [temBtn setImage:entity.assetImage forState:UIControlStateNormal];
         [self addSubview:temBtn];
         
-    }else if (entity.assetType == TJAssetReportMediaTypeCameraShot){
+    }else if (entity.assetType == TJAssetReportMediaTypeCameraShot||entity.assetType == TJAssetReportMediaTypeVideo){
         UIImage * temimage=[TJImagePickerManager getVideoImageFromPathUrl:[NSURL fileURLWithPath:entity.assetPath]];
         LittleMediaButton * temBtn =[LittleMediaButton new];
         [temBtn addTarget:self action:@selector(removeLittleMeidaButton:) forControlEvents:UIControlEventTouchUpInside];

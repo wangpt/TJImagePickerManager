@@ -115,17 +115,30 @@
 
     if (imagePickerController.mediaType == QBImagePickerMediaTypeVideo) {
         PHAsset *asset = assets.firstObject;
+        
+        
         [[TJImagePickerManager shareInstance]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
-            UIVideoEditorController *editVC;
-            // 检查这个视频资源能不能被修改
-            if ([UIVideoEditorController canEditVideoAtPath:outputPath]) {
-                editVC = [[UIVideoEditorController alloc] init];
-                editVC.videoMaximumDuration = 30;
-                editVC.videoPath = outputPath;
-                editVC.delegate = self;
-                [[[ UIApplication sharedApplication ] keyWindow ].rootViewController  presentViewController:editVC animated:YES completion:nil];
-            }
+            CGFloat videoTime = [TJImagePickerManager getVideoTotaltime:[NSURL fileURLWithPath:outputPath]];
+            if (videoTime>30) {
+                UIVideoEditorController *editVC;
+                // 检查这个视频资源能不能被修改
+                if ([UIVideoEditorController canEditVideoAtPath:outputPath]) {
+                    editVC = [[UIVideoEditorController alloc] init];
+                    editVC.videoMaximumDuration = 30;
+                    editVC.videoPath = outputPath;
+                    editVC.delegate = self;
+                    [[[ UIApplication sharedApplication ] keyWindow ].rootViewController  presentViewController:editVC animated:YES completion:nil];
+                }
 
+            }else{
+            //小于最大限制
+            
+                if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
+                    [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:assets];
+                }
+            
+            }
+            
             
         }];
         
@@ -136,7 +149,6 @@
         if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
             [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:assets];
         }
-       // [[[ UIApplication sharedApplication ] keyWindow ].rootViewController dismissViewControllerAnimated:YES completion:NULL];
     }
     
 
@@ -145,6 +157,8 @@
 - (void)videoEditorController:(UIVideoEditorController *)editor didSaveEditedVideoToPath:(NSString *)editedVideoPath{
 
     if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
+        [[[ UIApplication sharedApplication ] keyWindow ].rootViewController dismissViewControllerAnimated:YES completion:NULL];
+
         [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:@[editedVideoPath]];
     }
 }
