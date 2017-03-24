@@ -96,7 +96,6 @@
         
         
     }else if (type ==TJAssetReportMediaTypeVideo){
-    
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = assets.firstObject;
         entity.assetType = type;
