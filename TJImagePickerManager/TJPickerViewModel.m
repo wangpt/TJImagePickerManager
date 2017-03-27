@@ -93,7 +93,6 @@
 }
 
 #pragma mark - 附件上报
-
 - (void)takeAssetWithStyle:(TJAssetReportMediaType)type{
     self.type = type;
     if (type ==TJAssetReportMediaTypePhoto) {//选择照片
@@ -217,7 +216,12 @@
                 ///成功保存后进行获取
                 [[TJImagePickerManager shareInstance] getAssetsWithAllowPickingVideo:NO allowPickingImage:YES completion:^(NSArray<TJAssetModel *> *models) {
                     TJAssetModel *assetModel = [models lastObject];
-                    [self refreshCollectionViewWithAsset:assetModel.asset image:image];
+                    if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
+                        [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:@[assetModel.asset]];
+                    }
+                    
+                    
+                    
                 }];
             }
         }];
@@ -231,23 +235,23 @@
                 ///成功保存后进行获取
                 [[TJImagePickerManager shareInstance] getAssetsWithAllowPickingVideo:YES allowPickingImage:NO completion:^(NSArray<TJAssetModel *> *models) {
                     TJAssetModel *assetModel = [models lastObject];
-                    [self refreshCollectionViewWithAsset:assetModel.asset image:nil];
+                    [[TJImagePickerManager shareInstance]getVideoOutputPathWithAsset:assetModel.asset completion:^(NSString *outputPath) {
+                        if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
+                            [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:@[outputPath]];
+                        }
+                    }];
+                    
+                   
+
+                    
+                    
                 }];
             }
         }];
         
     }
 }
-#pragma mark - 刷新和获取方法
-//当image存在时取出照片
-- (void)refreshCollectionViewWithAsset:(id)asset image:(UIImage *)image {
-    if (self.delegate &&[self.delegate respondsToSelector:@selector(tj_imagePickerViewModelStyle:didFinishPickingAssets:)]) {
-        [self.delegate tj_imagePickerViewModelStyle:self.type didFinishPickingAssets:@[asset]];
-    }else{
-        [self playMediaViewWithAsset:asset image:image];
-        
-    }
-}
+
 #pragma mark - TJAudioPlayerViewDelegate
 //音频回调
 - (void)audioPlayerDidFinishPlaying:(TJAudioPlayerView *)playerView path:(NSString *)path{

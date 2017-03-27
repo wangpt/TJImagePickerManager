@@ -26,5 +26,6 @@
 @property (nonatomic, weak) id<TJPickerViewModelDelegate> delegate;
 
 + (instancetype)shareSingle;
-- (void)takeAssetWithStyle:(TJAssetReportMediaType)type;
+- (void)takeAssetWithStyle:(TJAssetReportMediaType)type;//附件上传
+- (void)playMediaViewWithAsset:(id)asset image:(UIImage *)image;//播放媒体
 @end

@@ -84,23 +84,15 @@
         }];
         
     }else if (type ==TJAssetReportMediaTypeCameraShot){//录像
-        PHAsset *asset = assets.firstObject;
-        [[TJImagePickerManager shareInstance]getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
-            TJMediaEntity *entity =[[TJMediaEntity alloc]init];
-            entity.asset = asset;
-            entity.assetPath = outputPath;
-            entity.assetType = type;
-            [self.libraryView addLittleMeidaButtonFromEntity:entity];
-            
-        }];
-        
-        
+        TJMediaEntity *entity =[[TJMediaEntity alloc]init];
+        entity.assetPath = assets.firstObject;
+        entity.assetType = type;
+        [self.libraryView addLittleMeidaButtonFromEntity:entity];
     }else if (type ==TJAssetReportMediaTypeVideo){
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = assets.firstObject;
         entity.assetType = type;
         [self.libraryView addLittleMeidaButtonFromEntity:entity];
-    
     }
     
     else{//录音
