@@ -13,6 +13,9 @@
 #import "TJVoiceRecordManager.h"
 #import "TJAudioPlayerView.h"
 #import "TJMediaLibraryView.h"
+#import "TJProgressClient.h"
+#import "TJProgressHUD.h"
+#import "UIView+TJMotionEffect.h"
 @interface ViewController ()
 @property (nonatomic,strong)TJMediaLibraryView * libraryView;
 @property (nonatomic,strong)TJVoiceRecordManager * voiceRecord;
@@ -29,11 +32,21 @@
     self.libraryView =[[TJMediaLibraryView alloc]initWithFrame:CGRectMake(0, 400, width, 44)];
     [self.view addSubview:self.libraryView];
     self.libraryView.backgroundColor = [UIColor redColor];
+    
+//    [[TJProgressClient sharedProgress] show:self.view];
+//    [TJProgressHUD showHUDAddedTo:self.navigationController.view];
+    
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"show"]];
+    [self.view addSubview:imageView];
+    imageView.center = self.view.center;
+    [imageView addXAxisWithValue:50.f YAxisWithValue:50.f];
+    
+    
 }
 - (IBAction)reportPhoto:(id)sender {
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"从手机选择",@"拍照"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
-            [TJPickerViewModel shareSingle].maximumNumberOfSelection = 2;
             [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypePhoto];
         }else if (buttonIndex == 1){
             [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeCamera];
@@ -59,12 +72,9 @@
     
     TJActionSheet *sheet = [TJActionSheet sheetWithTitle:@"请选择您需要的上传方式" buttonTitles:@[@"录音"] redButtonIndex:-1 clicked:^(NSInteger buttonIndex) {
         [[TJPickerViewModel shareSingle] takeAssetWithStyle:TJAssetReportMediaTypeAudio];
-    
-
     }];
     
     [sheet show];
-    
 }
 
 

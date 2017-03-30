@@ -17,6 +17,7 @@
 		A84A763E1E6014D4000F1901 /* TJActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A763D1E6014D4000F1901 /* TJActionSheet.m */; };
 		A84A76451E601946000F1901 /* TJImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76401E601946000F1901 /* TJImagePickerManager.m */; };
 		A84A76461E601946000F1901 /* TJMediaLibraryView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84A76421E601946000F1901 /* TJMediaLibraryView.m */; };
+		A88E0DE31E8BAB6E00E85EE8 /* TJProgressClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A88E0DE21E8BAB6E00E85EE8 /* TJProgressClient.m */; };
 		A89A6B4A1E71356F00DF3525 /* record_animate_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A89A6B481E71356F00DF3525 /* record_animate_back.png */; };
 		A89A6B4B1E71356F00DF3525 /* record_animate_play.png in Resources */ = {isa = PBXBuildFile; fileRef = A89A6B491E71356F00DF3525 /* record_animate_play.png */; };
 		A8B448FB1E763D8D000DA461 /* record_voice.png in Resources */ = {isa = PBXBuildFile; fileRef = A8B448FA1E763D8D000DA461 /* record_voice.png */; };
@@ -24,6 +25,9 @@
 		A8DAF0931E6D031E00829250 /* TJAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0911E6D031E00829250 /* TJAudioPlayerView.m */; };
 		A8DAF0981E6D033300829250 /* TJPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0951E6D033300829250 /* TJPickerViewModel.m */; };
 		A8DAF0991E6D033300829250 /* TJVoiceRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DAF0971E6D033300829250 /* TJVoiceRecordManager.m */; };
+		A8E4BF3C1E8CA49800BED697 /* TJProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4BF3B1E8CA49800BED697 /* TJProgressHUD.m */; };
+		A8E4BF431E8CE91100BED697 /* UIView+TJMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E4BF421E8CE91100BED697 /* UIView+TJMotionEffect.m */; };
+		A8E4BF491E8CEB3700BED697 /* show.png in Resources */ = {isa = PBXBuildFile; fileRef = A8E4BF481E8CEB3700BED697 /* show.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,8 @@
 		A84A76401E601946000F1901 /* TJImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJImagePickerManager.m; sourceTree = "<group>"; };
 		A84A76411E601946000F1901 /* TJMediaLibraryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMediaLibraryView.h; sourceTree = "<group>"; };
 		A84A76421E601946000F1901 /* TJMediaLibraryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMediaLibraryView.m; sourceTree = "<group>"; };
+		A88E0DE11E8BAB6E00E85EE8 /* TJProgressClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJProgressClient.h; sourceTree = "<group>"; };
+		A88E0DE21E8BAB6E00E85EE8 /* TJProgressClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJProgressClient.m; sourceTree = "<group>"; };
 		A89A6B481E71356F00DF3525 /* record_animate_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_back.png; sourceTree = "<group>"; };
 		A89A6B491E71356F00DF3525 /* record_animate_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_animate_play.png; sourceTree = "<group>"; };
 		A8B448FA1E763D8D000DA461 /* record_voice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_voice.png; sourceTree = "<group>"; };
@@ -56,6 +62,11 @@
 		A8DAF0951E6D033300829250 /* TJPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJPickerViewModel.m; sourceTree = "<group>"; };
 		A8DAF0961E6D033300829250 /* TJVoiceRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJVoiceRecordManager.h; sourceTree = "<group>"; };
 		A8DAF0971E6D033300829250 /* TJVoiceRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJVoiceRecordManager.m; sourceTree = "<group>"; };
+		A8E4BF3A1E8CA49800BED697 /* TJProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJProgressHUD.h; sourceTree = "<group>"; };
+		A8E4BF3B1E8CA49800BED697 /* TJProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJProgressHUD.m; sourceTree = "<group>"; };
+		A8E4BF411E8CE91100BED697 /* UIView+TJMotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TJMotionEffect.h"; sourceTree = "<group>"; };
+		A8E4BF421E8CE91100BED697 /* UIView+TJMotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TJMotionEffect.m"; sourceTree = "<group>"; };
+		A8E4BF481E8CEB3700BED697 /* show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show.png; sourceTree = "<group>"; };
 		AC2153E8828DD39D5374EBC6 /* Pods-TJImagePickerManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJImagePickerManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJImagePickerManager/Pods-TJImagePickerManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +117,7 @@
 				A84A76291E600733000F1901 /* AppDelegate.m */,
 				A84A763C1E6014D4000F1901 /* TJActionSheet.h */,
 				A84A763D1E6014D4000F1901 /* TJActionSheet.m */,
+				A8E4BF481E8CEB3700BED697 /* show.png */,
 				A84A762B1E600733000F1901 /* ViewController.h */,
 				A84A762C1E600733000F1901 /* ViewController.m */,
 				A84A762E1E600733000F1901 /* Main.storyboard */,
@@ -134,6 +146,12 @@
 				A8DAF0951E6D033300829250 /* TJPickerViewModel.m */,
 				A84A76411E601946000F1901 /* TJMediaLibraryView.h */,
 				A84A76421E601946000F1901 /* TJMediaLibraryView.m */,
+				A88E0DE11E8BAB6E00E85EE8 /* TJProgressClient.h */,
+				A88E0DE21E8BAB6E00E85EE8 /* TJProgressClient.m */,
+				A8E4BF3A1E8CA49800BED697 /* TJProgressHUD.h */,
+				A8E4BF3B1E8CA49800BED697 /* TJProgressHUD.m */,
+				A8E4BF411E8CE91100BED697 /* UIView+TJMotionEffect.h */,
+				A8E4BF421E8CE91100BED697 /* UIView+TJMotionEffect.m */,
 			);
 			name = TJImagePickerManager;
 			sourceTree = "<group>";
@@ -233,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E4BF491E8CEB3700BED697 /* show.png in Resources */,
 				A89A6B4B1E71356F00DF3525 /* record_animate_play.png in Resources */,
 				A84A76351E600733000F1901 /* LaunchScreen.storyboard in Resources */,
 				A89A6B4A1E71356F00DF3525 /* record_animate_back.png in Resources */,
@@ -302,6 +321,9 @@
 				A84A76461E601946000F1901 /* TJMediaLibraryView.m in Sources */,
 				A8DAF0991E6D033300829250 /* TJVoiceRecordManager.m in Sources */,
 				A8DAF0981E6D033300829250 /* TJPickerViewModel.m in Sources */,
+				A88E0DE31E8BAB6E00E85EE8 /* TJProgressClient.m in Sources */,
+				A8E4BF3C1E8CA49800BED697 /* TJProgressHUD.m in Sources */,
+				A8E4BF431E8CE91100BED697 /* UIView+TJMotionEffect.m in Sources */,
 				A8DAF0931E6D031E00829250 /* TJAudioPlayerView.m in Sources */,
 				A84A762A1E600733000F1901 /* AppDelegate.m in Sources */,
 				A84A76451E601946000F1901 /* TJImagePickerManager.m in Sources */,
