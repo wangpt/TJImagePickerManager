@@ -10,5 +10,7 @@
 
 @interface TJProgressHUD : UIView
 + (instancetype)showHUDAddedTo:(UIView *)view;
+- (void)hideProgressHUD;
+- (void)hideProgressHUDAfterDelay:(NSTimeInterval)delay;
 
 @end

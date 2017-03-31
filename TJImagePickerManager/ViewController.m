@@ -13,9 +13,7 @@
 #import "TJVoiceRecordManager.h"
 #import "TJAudioPlayerView.h"
 #import "TJMediaLibraryView.h"
-#import "TJProgressClient.h"
 #import "TJProgressHUD.h"
-#import "UIView+TJMotionEffect.h"
 @interface ViewController ()
 @property (nonatomic,strong)TJMediaLibraryView * libraryView;
 @property (nonatomic,strong)TJVoiceRecordManager * voiceRecord;
@@ -31,17 +29,7 @@
     [TJPickerViewModel shareSingle].delegate = self;
     self.libraryView =[[TJMediaLibraryView alloc]initWithFrame:CGRectMake(0, 400, width, 44)];
     [self.view addSubview:self.libraryView];
-    self.libraryView.backgroundColor = [UIColor redColor];
-    
-//    [[TJProgressClient sharedProgress] show:self.view];
-//    [TJProgressHUD showHUDAddedTo:self.navigationController.view];
-    
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"show"]];
-    [self.view addSubview:imageView];
-    imageView.center = self.view.center;
-    [imageView addXAxisWithValue:50.f YAxisWithValue:50.f];
-    
+
     
 }
 - (IBAction)reportPhoto:(id)sender {
@@ -79,11 +67,13 @@
 
 
 - (void)tj_imagePickerViewModelStyle:(TJAssetReportMediaType)type didFinishPickingAssets:(NSArray *)assets{
+    TJProgressHUD *HUD = [TJProgressHUD showHUDAddedTo:self.navigationController.view];
 
     if (type == TJAssetReportMediaTypePhoto||type ==TJAssetReportMediaTypeCamera) {//照片
         [assets enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             PHAsset *asset = obj;
             [[TJImagePickerManager shareInstance]getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
+                [HUD hideProgressHUD];
                 TJMediaEntity *entity =[[TJMediaEntity alloc]init];
                 entity.asset = asset;
                 entity.assetImage = photo;
@@ -94,11 +84,13 @@
         }];
         
     }else if (type ==TJAssetReportMediaTypeCameraShot){//录像
+        [HUD hideProgressHUD];
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = assets.firstObject;
         entity.assetType = type;
         [self.libraryView addLittleMeidaButtonFromEntity:entity];
     }else if (type ==TJAssetReportMediaTypeVideo){
+        [HUD hideProgressHUD];
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = assets.firstObject;
         entity.assetType = type;
@@ -106,6 +98,7 @@
     }
     
     else{//录音
+        [HUD hideProgressHUD];
         NSString *path = assets.firstObject;
         TJMediaEntity *entity =[[TJMediaEntity alloc]init];
         entity.assetPath = path;

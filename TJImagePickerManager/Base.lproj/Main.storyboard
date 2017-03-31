@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sbq-XD-Y0s">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="ukt-mQ-MGw">
+            <objects>
+                <navigationController id="Sbq-XD-Y0s" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rn5-75-OVm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ZRg-yV-jQN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3q-ka-YVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1255" y="99"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -22,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIF-9E-ilp">
-                                <rect key="frame" x="147.5" y="100" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="144" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="R1G-D8-XPC"/>
                                     <constraint firstAttribute="width" constant="80" id="rsc-G0-U3c"/>
@@ -33,7 +49,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSo-of-2Ny">
-                                <rect key="frame" x="147.5" y="200" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="244" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="VQE-QP-PWJ"/>
                                     <constraint firstAttribute="height" constant="30" id="oTi-wk-aRr"/>
@@ -44,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZK-UY-C4U">
-                                <rect key="frame" x="147.5" y="300" width="80" height="30"/>
+                                <rect key="frame" x="147.5" y="344" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="RtN-yt-mIj"/>
                                     <constraint firstAttribute="width" constant="80" id="bVL-f3-Do0"/>
@@ -65,9 +81,11 @@
                             <constraint firstItem="nSo-of-2Ny" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tbE-31-hff"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="iMu-aR-dVP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-265" y="99"/>
         </scene>
     </scenes>
 </document>
